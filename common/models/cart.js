@@ -26,11 +26,17 @@ module.exports = function(Cart) {
         });
     }
 
-    Cart.removeProductFromCart = function(cart_id, callback) {
-       Cart.remove({id: cart_id}, (err, cart) => {
-           if(err) return callback(err);
-           return callback(null, cart);
-       });
+    Cart.removeProductFromCart = function(id, product_id, callback) {
+        Cart.findOne({ id }, (err, cart) => {
+            if(!err && cart) {
+                Cart.update({ id }, { $pull: { product_id }}, (err, cart) => {
+                    if(err) return callback(err);
+                    callback(null, cart);
+                })
+            } else {
+                callback(err);
+            }
+        });
     }
 
     Cart.remoteMethod('addProductToCart', {
@@ -86,10 +92,19 @@ module.exports = function(Cart) {
                 http: {
                     source: 'path'
                 }
+            },
+            {
+                arg: 'product_id',
+                type: 'string',
+                description: 'product id',
+                required: true,
+                http: {
+                    source: 'form'
+                }
             }
         ],
         returns: {arg: 'cart', type: 'object'},
-        http: {verb: 'delete', path: '/:id/removeFromCart', source: 'body'},
+        http: {verb: 'put', path: '/:id/removeFromCart', source: 'body'},
         description: 'remove product from the cart'
     });
 };
