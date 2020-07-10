@@ -2,8 +2,8 @@
   "db": {
     "host": "localhost",
     "port": 27017,
-    "url": "mongodb://localhost:27017/loopbackDemo",
-    "database": "loopbackDemo",
+    "url": "mongodb+srv://goldy:goldy@test-ifhka.mongodb.net/test?retryWrites=true&w=majority",
+    "database": "test",
     "password": "",
     "name": "db",
     "user": "",
