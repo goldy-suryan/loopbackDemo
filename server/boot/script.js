@@ -7,9 +7,7 @@ module.exports = function(app) {
     if(!err && user) {
       findRole(Role, RoleMapping, user);
     } else {
-      User.create([
-        {username: 'goldy', email: 'goldy@gmail.com', password: 'password'}
-      ], function(err, users) {
+      User.create({username: 'goldy', email: 'goldy@gmail.com', password: 'password'}, function(err, users) {
           if (err) console.log(err);
           // find Role
           findRole(Role, RoleMapping, users);
@@ -34,7 +32,7 @@ function createRole(Role, RoleMapping, users) {
     name: 'admin'
   }, function(err, role) {
     if (err) console.log(err);
-
+    console.log(users, "***************************")
     role.principals.create({
       principalType: RoleMapping.USER,
       principalId: users[0].id
