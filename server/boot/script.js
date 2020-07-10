@@ -1,15 +1,20 @@
+const adminCredentials = {
+  username: '',
+  email: '',
+  password: ''
+}
+
 module.exports = function(app) {
   var Role = app.models.Role;
   var RoleMapping = app.models.RoleMapping;
   var User = app.models.User;
   // var Team = app.models.Team;
-  User.findOne({ where: { username: 'goldy' }}, (err, user) => {
+  User.findOne({ where: { email: adminCredentials.email }}, (err, user) => {
     if(!err && user) {
       findRole(Role, RoleMapping, user);
     } else {
-      User.create({username: 'goldy', email: 'goldy@gmail.com', password: 'password'}, function(err, users) {
+      User.create({username: adminCredentials.username, email: adminCredentials.email, password: adminCredentials.password}, function(err, users) {
           if (err) console.log(err);
-          // find Role
           findRole(Role, RoleMapping, users);
         });
     }
