@@ -42,7 +42,8 @@
   },
   "files": {},
   "final": {
-    "loopback#urlNotFound": {}
+    "loopback#urlNotFound": {},
+    "./boot/error-handler": {}
   },
   "final:after": {
     "strong-error-handler": {}
