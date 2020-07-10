@@ -1,0 +1,56 @@
+{
+  "name": "order",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "SetupRemoteMethods": {
+      "disableAllExcept": [
+        "create",
+        "find",
+        "findById",
+        "replaceById",
+        "deleteById"
+      ],
+      "addFromFile": "./common/models/order.js"
+    }
+  },
+  "properties": {
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "inactive"
+    },
+    "delievery_address": {
+      "type": "string",
+      "required": true
+    },
+    "delievery_price": {
+      "type": "string",
+      "required": true
+    },
+    "discount": {
+      "type": "number",
+      "required": false
+    },
+    "tax": {
+      "type": "number",
+      "required": true,
+      "default": true
+    },
+    "total": {
+      "type": "number",
+      "required": true
+    },
+    "cart_id": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

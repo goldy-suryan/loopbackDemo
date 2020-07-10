@@ -1,0 +1,15 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "mongodb://localhost:27017/loopbackDemo",
+    "database": "loopbackDemo",
+    "password": "",
+    "name": "db",
+    "user": "",
+    "useNewUrlParser": true,
+    "useUnifiedTopology": true,
+    "connector": "mongodb",
+    "allowExtendedOperators": true
+  }
+}

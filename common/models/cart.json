@@ -1,0 +1,47 @@
+{
+  "name": "cart",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "SetupRemoteMethods": {
+      "disableAllExcept": [
+        "find",
+        "findById",
+        "replaceById",
+        "deleteById",
+        "addProductToCart",
+        "removeProductFromCart",
+        "updateCart"
+      ],
+      "addFromFile": "./common/models/cart.js",
+      "relations": {
+        "products": {
+          "disableAllExcept": [
+            "get"
+          ]
+        }
+      }
+    }
+  },
+  "properties": {
+    "product_id": {
+      "type": [
+        "string"
+      ],
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "products": {
+      "type": "hasAndBelongsToMany",
+      "model": "product",
+      "foreignKey": "product_id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

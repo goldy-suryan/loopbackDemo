@@ -1,0 +1,92 @@
+{
+  "name": "product",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "SetupRemoteMethods": {
+      "disableAllExcept": [
+        "create",
+        "find",
+        "findById",
+        "replaceById",
+        "deleteById"
+      ],
+      "addFromFile": "./common/models/product.js",
+      "relations": {
+        "carts": {
+          "disableAllExcept": [
+            "create",
+            "get"
+          ]
+        },
+        "category": {
+          "disableAllExcept": [
+            "create",
+            "get"
+          ]
+        }
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "category_id": {
+      "type": "string",
+      "required": true
+    },
+    "cart_id": {
+      "type": "string",
+      "required": false
+    },
+    "is_active": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "count": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {
+    "carts": {
+      "type": "hasAndBelongsToMany",
+      "model": "cart",
+      "foreignKey": "cart_id"
+    },
+    "category": {
+      "type": "belongsTo",
+      "model": "category",
+      "foreignKey": "category_id"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

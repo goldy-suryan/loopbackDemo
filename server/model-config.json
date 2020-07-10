@@ -1,0 +1,72 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins",
+      "../node_modules/loopback-setup-remote-methods-mixin"
+    ]
+  },
+  "User": {
+    "dataSource": "db",
+    "type": "PersistedModel",
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "login": true,
+          "logout": true,
+          "create": true,
+          "find": true
+        }
+      }
+    }
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false,
+    "type": "PersistedModel"
+  },
+  "order": {
+    "dataSource": "db",
+    "public": true,
+    "type": "PersistedModel"
+  },
+  "cart": {
+    "dataSource": "db",
+    "public": true,
+    "type": "PersistedModel"
+  },
+  "product": {
+    "dataSource": "db",
+    "public": true,
+    "type": "PersistedModel"
+  },
+  "category": {
+    "dataSource": "db",
+    "public": true,
+    "type": "PersistedModel"
+  }
+}
